@@ -10,7 +10,7 @@ git clone https://github.com/LoicDoitteau/NeuralNetJS.git
 npm install
 ```
 
-### Buil examples
+### Build examples
 
 ```
 npm run build
