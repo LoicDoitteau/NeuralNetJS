@@ -1,0 +1,27 @@
+{
+  "name": "neuralnetjs",
+  "version": "1.0.0",
+  "description": "A basic neural in JS\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dnet in js",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --config webpack.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoicDoitteau/NeuralNetJS.git"
+  },
+  "author": "LoicDoitteau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoicDoitteau/NeuralNetJS/issues"
+  },
+  "homepage": "https://github.com/LoicDoitteau/NeuralNetJS#readme"
+}
