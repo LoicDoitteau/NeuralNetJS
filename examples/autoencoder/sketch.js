@@ -17,10 +17,10 @@ const sketch = p => {
 
     p.draw = () => {
         p.background(200);
-        p.mouseX = p.constrain(p.mouseX, 0, p.width);
-        p.mousey = p.constrain(p.mouseY, 0, p.height);
-        let guess = network.train(0.1, [p.mouseX / p.width, p.mouseY / p.height], [p.mouseX / p.width, p.mouseY / p.height]);
-        p.ellipse(guess[0] * p.width, guess[1] * p.height, 20, 20)
+        const x = p.constrain(p.mouseX, 0, p.width) / p.width;
+        const y = p.constrain(p.mouseY, 0, p.height) / p.height;
+        const guess = network.train(0.1, [x, y], [x, y]);
+        p.ellipse(guess[0] * p.width, guess[1] * p.height, 20, 20);
         return false;
     };
 };
