@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
-        xor : "./Examples/XOR/sketch",
-        autoencoder : "./Examples/AutoEncoder/sketch"
+        xor : "./examples/xor/sketch",
+        autoencoder : "./examples/autoencoder/sketch"
     },
     output: {
         path: __dirname + "/build",
