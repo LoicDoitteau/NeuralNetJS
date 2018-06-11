@@ -1,5 +1,7 @@
 module.exports = {
+    mode: 'none',
     entry: {
+        ocr : "./examples/ocr/sketch",
         xor : "./examples/xor/sketch",
         autoencoder : "./examples/autoencoder/sketch"
     },
