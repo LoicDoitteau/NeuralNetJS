@@ -1,5 +1,6 @@
 # NeuralNetJS
 My journey to undestanding neural networks
+https://loicdoitteau.github.io/NeuralNetJS/examples
 
 ## How to use
 
