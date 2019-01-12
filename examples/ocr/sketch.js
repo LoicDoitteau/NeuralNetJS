@@ -317,7 +317,7 @@ async function loadFile(file) {
             data = Array.from({length : size}, (_, i) => new Uint8Array(buffer, i * subSize + 16, subSize));
             break;
         default : 
-            throw "Invalid file"
+            throw "Invalid file";
             break;
     }
 

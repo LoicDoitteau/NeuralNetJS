@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -133,9 +133,15 @@ Network.prototype.feedForward = function(input) {
 Network.prototype.backPropagate = function(learningRate, output) {
     let errors = _Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].substract(_Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].fromArray(output), this.outputLayer.neurons);
     propagateLayer(this, this.layers.length - 1, errors);
-    this.weigths.map((x, i) => x.add(_Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].dotProduct(this.gradients[i], _Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].transpose(this.layers[i].neurons)).multiply(learningRate)));
-    this.biases.map((x, i) =>  x.add(_Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].multiply(this.gradients[i], learningRate)));
+    this.weigths.forEach((x, i) => x.add(_Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].dotProduct(this.gradients[i], _Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].transpose(this.layers[i].neurons)).multiply(learningRate)));
+    this.biases.forEach((x, i) =>  x.add(_Matrix__WEBPACK_IMPORTED_MODULE_1__["Matrix"].multiply(this.gradients[i], learningRate)));
 };
+
+Network.prototype.log = function() {
+    console.group("Network");
+    this.layers.forEach((layer, i) => layer.log(this.weigths[i], this.biases[i - 1]));
+    console.groupEnd();
+}
 
 function feedLayer(network, i, input) {
     let layer = network.layers[i];
@@ -189,6 +195,24 @@ Layer.prototype.init = function() {
     this.neurons = _Matrix__WEBPACK_IMPORTED_MODULE_0__["Matrix"].fromArray(new Array(this.size).fill(0));
 };
 
+Layer.prototype.log = function(weigths, biases) {
+    console.group("Layer");
+    console.group("Neurons");
+    this.neurons.log();
+    console.groupEnd();
+    if(biases) {
+        console.group("Biases");
+        biases.log();
+        console.groupEnd();
+    }
+    if(weigths) {
+        console.group("Weigths");
+        weigths.log();
+        console.groupEnd();
+    }
+    console.groupEnd();
+}
+
 
 
 
@@ -199,6 +223,9 @@ Layer.prototype.init = function() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Matrix", function() { return Matrix; });
+/* harmony import */ var _Utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+
+
 function Matrix(rows, cols) {
     this.rows = rows;
     this.cols = cols;
@@ -220,7 +247,7 @@ Matrix.prototype.map = function(func) {
 };
 
 Matrix.prototype.randomize = function() {
-    return this.map(() => Math.random() * 2 - 1);
+    return this.map(() => Object(_Utils__WEBPACK_IMPORTED_MODULE_0__["random"])(-1, 1));
 };
 
 Matrix.prototype.multiply = function(m) {
@@ -253,6 +280,10 @@ Matrix.prototype.substract = function(m) {
 Matrix.prototype.toArray = function() {
     return [].concat(...this.data);
 };
+
+Matrix.prototype.log = function() {
+    console.table(this.data);
+}
 
 Matrix.map = function(m, func) {
     return new Matrix(m.rows, m.cols).map((_, i, j) => func(m.data[i][j], i, j));
@@ -307,6 +338,17 @@ Matrix.fromArray = function(arr) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "random", function() { return random; });
+const random = (min, max) => Math.random() * (max - min) + min;
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationFunction", function() { return ActivationFunction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sigmoid", function() { return sigmoid; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tanh", function() { return tanh; });
@@ -325,14 +367,14 @@ const tanh = new ActivationFunction(_tanh, x => 1 - _tanh(x) * _tanh(x));
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_Network__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _lib_Layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _lib_ActivationFunction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
+/* harmony import */ var _lib_ActivationFunction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
 
 
 
