@@ -114,7 +114,7 @@ const trainingSketch = p => {
         let inputLayer = new _lib_Layer__WEBPACK_IMPORTED_MODULE_1__["Layer"](784);
         let hiddenLayers = [];
         let outputLayer = new _lib_Layer__WEBPACK_IMPORTED_MODULE_1__["Layer"](10, _lib_ActivationFunction__WEBPACK_IMPORTED_MODULE_2__["sigmoid"]);
-        network = new _lib_Network__WEBPACK_IMPORTED_MODULE_0__["Network"](inputLayer, hiddenLayers, outputLayer, false);
+        network = new _lib_Network__WEBPACK_IMPORTED_MODULE_0__["Network"](inputLayer, hiddenLayers, outputLayer, true);
         index = 0;
         p.background(0);
     };
@@ -180,7 +180,7 @@ const drawingSketch = p => {
     };
 };
 
-const zeroSketch  = p => {
+const visualisationStetch = n => p => {
 
     let image;
 
@@ -191,181 +191,10 @@ const zeroSketch  = p => {
 
     p.draw = () => {
         if(network) {
-            setVisualisation(image, 0);
+            setVisualisation(image, n);
             p.image(image, 0, 0, 200, 200);
             p.fill(255, 255, 0);
-            p.text(0, 10, 10);
-        }
-    };
-};
-
-const oneSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 1);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(1, 10, 10);
-        }
-    };
-};
-
-const twoSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 2);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(2, 10, 10);
-        }
-    };
-};
-
-const threeSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 3);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(0+3, 10, 10);
-        }
-    };
-};
-
-const fourSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 4);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(4, 10, 10);
-        }
-    };
-};
-
-const fiveSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 5);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(5, 10, 10);
-        }
-    };
-};
-
-const sixSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 6);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(6, 10, 10);
-        }
-    };
-};
-
-const sevenSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 7);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(7, 10, 10);
-        }
-    };
-};
-
-const eightSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 8);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(8, 10, 10);
-        }
-    };
-};
-
-const nineSketch  = p => {
-
-    let image;
-
-    p.setup = () => {
-        p.createCanvas(200, 200);
-        image = p.createImage(28, 28);
-    };
-
-    p.draw = () => {
-        if(network) {
-            setVisualisation(image, 9);
-            p.image(image, 0, 0, 200, 200);
-            p.fill(255, 255, 0);
-            p.text(9, 10, 10);
+            p.text(n, 10, 10);
         }
     };
 };
@@ -373,16 +202,7 @@ const nineSketch  = p => {
 p5.disableFriendlyErrors = true;
 new p5(drawingSketch);
 new p5(trainingSketch);
-new p5(zeroSketch);
-new p5(oneSketch);
-new p5(twoSketch);
-new p5(threeSketch);
-new p5(fourSketch);
-new p5(fiveSketch);
-new p5(sixSketch);
-new p5(sevenSketch);
-new p5(eightSketch);
-new p5(nineSketch);
+for(var i = 0; i < 10; i++) new p5(visualisationStetch(i));
 
 function loadMNIST(callback) {
     let mnist = {};
@@ -598,7 +418,7 @@ Matrix.prototype.map = function(func) {
 };
 
 Matrix.prototype.randomize = function() {
-    return this.map(() => Object(_Utils__WEBPACK_IMPORTED_MODULE_0__["random"])(-1, 1));
+    return this.map(() => Object(_Utils__WEBPACK_IMPORTED_MODULE_0__["random"])(-0.1, 0.1));
 };
 
 Matrix.prototype.multiply = function(m) {

@@ -247,7 +247,7 @@ Matrix.prototype.map = function(func) {
 };
 
 Matrix.prototype.randomize = function() {
-    return this.map(() => Object(_Utils__WEBPACK_IMPORTED_MODULE_0__["random"])(-1, 1));
+    return this.map(() => Object(_Utils__WEBPACK_IMPORTED_MODULE_0__["random"])(-0.1, 0.1));
 };
 
 Matrix.prototype.multiply = function(m) {
